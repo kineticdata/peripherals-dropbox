@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="dropbox_file_upload" name="Dropbox File Upload" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler uploads a file to Dropbox.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="dropbox_location" label="Dropbox File Location" required="true"
+            tooltip="The location and name of the file as it will appear in dropbox. The location of a file at the root folder will be file.txt"/>
+        <parameter id="attachment_question_menu_label" required="true" label="Attachment Question Menu Label:"
+            tooltip="The menu label of the attachment question where the photo will be uploaded to." />
+    </parameters>
+    <handler name="dropbox_file_upload" version="1">
+        <infos>
+            <info name="access_token">&lt;%= @info['access_token'] %&gt;</info>
+            <info name="remedy_server">&lt;%= @info['remedy_server'] %&gt;</info>
+            <info name="remedy_username">&lt;%= @info['remedy_username'] %&gt;</info>
+            <info name="remedy_password">&lt;%= @info['remedy_password'] %&gt;</info>
+            <info name="remedy_port">&lt;%= @info['remedy_port'] %&gt;</info>
+            <info name="remedy_prognum">&lt;%= @info['remedy_prognum'] %&gt;</info>
+            <info name="remedy_authentication">&lt;%= @info['remedy_authentication'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name='attachment_question_menu_label'>&lt;%= @parameters['attachment_question_menu_label'] %&gt;</parameter>
+            <parameter name="dropbox_location">&lt;%= @parameters['dropbox_location'] %&gt;</parameter>
+            <parameter name='customer_survey_instance_id'>&lt;%= @base['CustomerSurveyInstanceId'] %&gt;</parameter>
+            <parameter name='survey_template_instance_id'>&lt;%= @base['surveyTemplateInstanceID'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml"/>
+</taskDefinition>

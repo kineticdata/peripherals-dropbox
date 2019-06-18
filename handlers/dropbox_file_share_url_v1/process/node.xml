@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="dropbox_file_share_url" name="Dropbox File Share Url" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler gets a Share Url for a file on Dropbox.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="dropbox_location" label="Dropbox File Location" required="true"
+            tooltip="The location and name of the file that you want to get a share url for."/>
+    </parameters>
+    <handler name="dropbox_file_share_url" version="1">
+        <infos>
+            <info name="access_token">&lt;%= @info['access_token'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="dropbox_location">&lt;%= @parameters['dropbox_location'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml">
+        <result name="share_url"/>
+    </results>
+</taskDefinition>
+

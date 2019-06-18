@@ -1,0 +1,48 @@
+== Dropbox_Folder_Create_V1
+    This handler creates a folder on Dropbox.
+
+=== Parameters
+    [Dropbox Folder Path]
+        The location and name of the folder that you want to create.
+
+=== Results
+    No results are returned for this handler.
+
+==== Sample Configuration
+    Dropbox Folder Path:                     Folder/New Folder
+
+=== Detailed Description
+    This handler uses the Dropbox Ruby SDK to create a folder in your dropbox
+    instance. Before using any Dropbox handler for the first time, you will need 
+    to obtain an access key to connect to the account (Instructions for that can
+    be found below). After doing that, the handler will connect to that account
+    and then create a folder at the given path. The Dropbox Folder Path
+    determines where your folder will be placed in the folder hierarchy of your 
+    Dropbox instance. If any of the folders in the path have not been previously 
+    created, this call to Dropbox will create the folder and then place the 
+    uploaded file inside of it.
+
+== How to retrieve the Dropbox Access Token
+    1. Create an app in the Dropbox App Console (if you already have an app, you 
+    can skip to step #5)
+
+    2. First, go to the Dropbox Developers page and go to the App Console
+
+    3. Click the 'Create app' button and choose the following options
+        - Dropbox API app
+        - File and datastores
+        - No - My app needs access to files already on Dropbox
+        - All file types - My app needs access to a user's full Dropbox. Only 
+          supported via the Core API.
+        - Input an App Name
+
+    4. Click in to see the details of the app you just created and add 
+       'http://localhost' to the OAuth redirect URIs
+
+    5. To easily retrieve the access token, unzip the handler file and navigate
+       to the resources folder (handler -> resources) and open 
+       retrieveAccessToken.html
+
+    6. Follow the instructions on that page to generate your access token. 
+       Insert it into your info values and you are now properly authenticated 
+       with Dropbox!

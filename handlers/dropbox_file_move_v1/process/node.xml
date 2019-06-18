@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="dropbox_file_move" name="Dropbox File Move" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler moves a file from one location to another in Dropbox.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="old_dropbox_location" label="Old Dropbox File Location" required="true"
+            tooltip="The location and name of the file that you want to move."/>
+        <parameter id="new_dropbox_location" label="New Dropbox File Location" required="true"
+            tooltip="The location that you want to move the file to."/>
+    </parameters>
+    <handler name="dropbox_file_move" version="1">
+        <infos>
+            <info name="access_token">&lt;%= @info['access_token'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="old_dropbox_location">&lt;%= @parameters['old_dropbox_location'] %&gt;</parameter>
+            <parameter name="new_dropbox_location">&lt;%= @parameters['new_dropbox_location'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml"/>
+</taskDefinition>
+

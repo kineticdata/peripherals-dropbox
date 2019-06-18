@@ -1,0 +1,57 @@
+== Dropbox_File_Upload_V1
+    This handler uploads a file to Dropbox.
+
+=== Parameters
+    [Dropbox File Location]
+        The location and name of the file as it will appear in dropbox. The 
+        location of a file at the root folder will be file.txt
+    [Attachment Question Menu Label]
+        The menu label of the attachment question where the file will be 
+        uploaded to.
+
+=== Results
+    No results are returned for this handler.
+
+==== Sample Configuration
+    Dropbox File Location:                     Folder/test_file.txt
+    Attachment Question Menu Label:            Upload File
+
+=== Detailed Description
+    This handler uses the Dropbox Ruby SDK to upload a file to your dropbox
+    location. Before using any Dropbox handler for the first time, you will need 
+    to obtain an access key to connect to the account (Instructions for that can
+    be found below). After doing that, the handler will connect to that account
+    and then upload the file to the given location. The Dropbox File Location
+    determines where your file will be placed in the folder hierarchy of your 
+    Dropbox instance. If you pass just a file name, it will be placed just in
+    the root folder. To put it into a folder, you just need to follow the form
+    of Folder/file.txt. If the folder has not been previously created, this call
+    to Dropbox will create the folder and then place the uploaded file inside of
+    it.
+
+== How to retrieve the Dropbox Access Token
+    1. Create an app in the Dropbox App Console (if you already have an app, you 
+    can skip to step #5)
+
+    2. First, go to the Dropbox Developers page and go to the App Console
+
+    3. Click the 'Create app' button and choose the following options
+        - Dropbox API app
+        - File and datastores
+        - No - My app needs access to files already on Dropbox
+        - All file types - My app needs access to a user's full Dropbox. Only 
+          supported via the Core API.
+        - Input an App Name
+
+    4. Click in to see the details of the app you just created and add 
+       'http://localhost' to the OAuth redirect URIs
+
+    5. To easily retrieve the access token, unzip the handler file and navigate
+       to the resources folder (handler -> resources) and open 
+       retrieveAccessToken.html
+
+    6. Follow the instructions on that page to generate your access token. 
+       Insert it into your info values and you are now properly authenticated 
+       with Dropbox!
+
+

@@ -1,0 +1,52 @@
+== Dropbox_File_Move_V1
+    This handler moves a file from one location to another in Dropbox.
+
+=== Parameters
+    [Old Dropbox File Location]
+        The location and name of the file that you want to move.
+    [New Dropbox File Location]
+        The location that you want to move the file to.
+
+=== Results
+    No results are returned for this handler.
+
+==== Sample Configuration
+    Old Dropbox File Location:                 Folder/test_file.txt
+    New Dropbox File Location:                 New Folder/test_file.txt
+
+=== Detailed Description
+    This handler uses the Dropbox Ruby SDK to move a file between locations on 
+    Dropbox. Before using any Dropbox handler for the first time, you will need 
+    to obtain an access key to connect to the account (Instructions for that can
+    be found below). After doing that, the handler will connect to that account
+    and then copy a file to the specified location. The Old Dropbox File 
+    Location determines what file will be moved and the New Dropbox File
+    Location determines where that file will be moved to in the folder hierarchy 
+    of your Dropbox instance. If a folder in the New Dropbox File Location has 
+    not been previously created, this call to Dropbox will create the folder 
+    before moving the file into it.
+
+== How to retrieve the Dropbox Access Token
+    1. Create an app in the Dropbox App Console (if you already have an app, you 
+    can skip to step #5)
+
+    2. First, go to the Dropbox Developers page and go to the App Console
+
+    3. Click the 'Create app' button and choose the following options
+        - Dropbox API app
+        - File and datastores
+        - No - My app needs access to files already on Dropbox
+        - All file types - My app needs access to a user's full Dropbox. Only 
+          supported via the Core API.
+        - Input an App Name
+
+    4. Click in to see the details of the app you just created and add 
+       'http://localhost' to the OAuth redirect URIs
+
+    5. To easily retrieve the access token, unzip the handler file and navigate
+       to the resources folder (handler -> resources) and open 
+       retrieveAccessToken.html
+
+    6. Follow the instructions on that page to generate your access token. 
+       Insert it into your info values and you are now properly authenticated 
+       with Dropbox!

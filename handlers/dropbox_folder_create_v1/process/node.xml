@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="dropbox_folder_create" name="Dropbox Folder Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>This handler creates a folder on Dropbox.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="dropbox_path" label="Dropbox Folder Path" required="true"
+            tooltip="The location and name of the folder that you want to create."/>
+    </parameters>
+    <handler name="dropbox_folder_create" version="1">
+        <infos>
+            <info name="access_token">&lt;%= @info['access_token'] %&gt;</info>
+            <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="dropbox_path">&lt;%= @parameters['dropbox_path'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml"/>
+</taskDefinition>
+

@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Retrieve Dropbox Access Token</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        function getCode() {
+            var url = "https://www.dropbox.com/1/oauth2/authorize?response_type=code&redirect_uri=http://localhost&client_id=";
+            url = url + $("#id").val();
+            if ($("#id").val() == "") {
+                alert("Please enter an App Key");
+            } else {
+                window.open(url,"_blank");
+            }
+        }
+
+        function getAccessKey() {
+            var code = $("#code").val()
+            var client_id = $("#id").val()
+            var client_secret = $("#secret").val()
+            var data = "code=" + code + "&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost&client_id=" + client_id + "&client_secret=" + client_secret
+            $.ajax({
+                type: 'POST',
+                url: 'https://api.dropbox.com/1/oauth2/token',
+                data: data,
+                dataType: "application/x-www-form-urlencoded"
+            }).always(function(resp) {
+                var obj = JSON.parse(resp.responseText)
+                if (typeof(obj.access_token) !== 'undefined') {
+                    $("#access_token").val(obj.access_token);
+                } else {
+                    console.log(obj);
+                    alert("Failed Request: " + JSON.stringify(obj));
+                }
+            });
+        }
+    </script>
+    <h4>1. First get the App Key and App Secret from the <a href="https://www.dropbox.com/developers/apps/">Dropbox App Console</a></h4>
+    <table>
+        <tbody>
+            <tr>
+                <td>App Key:</td>
+                <td><input id="id" name="client_id" type="text" /></td>
+            </tr>
+            <tr>
+                <td>App Secret:</td>
+                <td><input id="secret" name="client_secret" type="text" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" onclick="getCode();">Get Code!</button>
+    <br>
+    <h4>2. Click on 'Get Code!' to allow the handler to access your Dropbox account.</a></h4>
+    <h4>3. After allowing access, look in the url and copy the string of characters that comes after code= in the url.</a></h4>
+    <h4>4. Copy the code into the code input field.</a></h4>
+    <h4>5. Click on 'Get Access Token!' to generate your access token.</a></h4>
+    <h4>6. Copy the access token into your info values for your Dropbox handlers!</a></h4>
+    <br>
+    Code: <input id="code" name="code" type="text" size="60" />
+    <br>
+    <button type="button" onclick="getAccessKey();">Get Access Token!</button>
+    <br>
+    <br>
+    Access Token: <input id="access_token" name="access_token" type="text" size="80" readonly>
+</body>
+</html>
